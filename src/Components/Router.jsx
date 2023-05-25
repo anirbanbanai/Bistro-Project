@@ -29,11 +29,11 @@ import Login from "./Login";
         {
           path:"/contact",
           element:<ContactUs></ContactUs>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
         }
       ]
-    },
-    {
-      path:'/login',
-      element:<Login></Login>
     }
   ]);

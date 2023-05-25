@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import { Rating } from "@smastrom/react-rating";
-
 import '@smastrom/react-rating/style.css'
 
 const Testimonial = () => {
@@ -14,7 +13,7 @@ const Testimonial = () => {
         fetch(`http://localhost:5000/review`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setData(data)
             })
     }, [])

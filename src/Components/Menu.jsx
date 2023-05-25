@@ -19,6 +19,7 @@ const Menu = () => {
     const salad = menu.filter(m => m.category === "salad");
     const pizza = menu.filter(m => m.category === "pizza");
     const offered = menu.filter(m => m.category === "offered");
+    const drinks = menu.filter(m => m.category === "drinks");
     return (
         <div>
             <Helmet>
@@ -38,7 +39,9 @@ const Menu = () => {
 
             <MenuCaragory img={menuimd3} title={"soup"} item={soup}></MenuCaragory>
             
-            <MenuCaragory img={menuimd} title={"desert"} item={dessert}></MenuCaragory>
+            <MenuCaragory img={menuimd} title={"dessert"} item={dessert}></MenuCaragory>
+
+            <MenuCaragory img={menuimd} title={"drinks"} item={drinks}></MenuCaragory>
         </div>
     );
 };

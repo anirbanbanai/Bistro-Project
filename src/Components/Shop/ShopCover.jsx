@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const ShopCover = () => {
-    const catagories  = ['salad', 'pizza', 'dessert', 'soup', 'drinks']
+    const catagories  = ['salad', 'pizza','soup', 'dessert', 'drinks']
     const {catagory} = useParams();
     const initialIndex = catagories.indexOf(catagory)
     const [tabIndex, setTabIndex] = useState(initialIndex);
@@ -21,7 +21,7 @@ const ShopCover = () => {
     const pizza = menu.filter(m => m.category === "pizza");
     const drinks = menu.filter(m => m.category === "drinks");
 
-    return (
+    return ( 
         <div >
               <Helmet>
                 <title>Bistro boss || Order Food</title>

@@ -11,7 +11,7 @@ const useMenu = () =>{
             setMenu(data)
         })
     },[])
-    console.log(menu)
+    // console.log(menu)
 
     return [menu, loading]
 }

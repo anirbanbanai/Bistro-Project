@@ -4,7 +4,7 @@ const Navbar = () => {
     const Navoption = <>
         <li><Link to='/'>Home</Link></li>
         <li ><Link to='/menu'>Our Menu</Link> </li>
-        <li><Link to='/order'>Our Shop</Link></li>
+        <li><Link to='/order/salad'>Our Shop</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
         <li><Link>Dashboard</Link></li>
     </>
@@ -29,7 +29,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link to='/login' className="btn btn-outline btn-warning">Login</Link>
-                    <a className="btn">Get started</a>
+                   
                 </div>
             </div>
         </div>

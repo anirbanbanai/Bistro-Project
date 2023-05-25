@@ -22,9 +22,10 @@ import Login from "./Login";
           element:<Menu></Menu>
         },
         {
-          path:"/order",
+          path:"/order/:catagory",
           element:<Order></Order>
         },
+        
         {
           path:"/contact",
           element:<ContactUs></ContactUs>

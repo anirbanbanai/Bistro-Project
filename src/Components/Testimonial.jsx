@@ -10,7 +10,7 @@ import '@smastrom/react-rating/style.css'
 const Testimonial = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/review`)
+        fetch(`https://bistro-boss-server-wine.vercel.app/review`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data)

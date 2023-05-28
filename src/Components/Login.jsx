@@ -1,10 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from './AuthPrvider';
+import { Link } from 'react-router-dom';
+
+
 
 
 const Login = () => {
+  const {logIn, }  =useContext(AuthContext);
+
   const captchaRef = useRef(null);
-  const [disabled, setDisabled] = useState(true);
+  const [, setDisabled] = useState(true);
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -17,6 +23,14 @@ const Login = () => {
 
     const all = { email, password };
     console.log(all)
+
+    logIn(email, password)
+    .then(result =>{
+      console.log(result.user);
+    })
+    .catch(error=>{
+      console.log(error.message)
+    })
   }
 
   const handleValidate = () => {
@@ -30,7 +44,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='pt-20'>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col ">
           <div className="text-center ">
@@ -60,8 +74,9 @@ const Login = () => {
                 <button onClick={handleValidate} className='btn btn-outline btn-xs '>Validate Captcha</button>
               </div>
               <div className="form-control mt-6">
-                <button disabled={disabled} className="btn btn-primary only:">Login</button>
+                <button disabled={false} className="btn btn-primary only:">Login</button>
               </div>
+              <h2>New to User? <Link to='/register'>Register</Link></h2>
             </form>
           </div>
         </div>
@@ -71,3 +86,4 @@ const Login = () => {
 };
 
 export default Login;
+

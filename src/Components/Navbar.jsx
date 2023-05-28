@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from 'react-icons/fa';
+import { useContext } from "react";
+import { AuthContext } from "./AuthPrvider";
+import { useCart } from "./Hooks/useCart";
 
 const Navbar = () => {
+    const [cart] = useCart();
+    const {user ,LogOut} = useContext(AuthContext);
+    const Out = ()=>{
+        LogOut()
+    }
     const Navoption = <>
         <li><Link to='/'>Home</Link></li>
         <li ><Link to='/menu'>Our Menu</Link> </li>
-        <li><Link to='/order/salad'>Our Shop</Link></li>
+        <li><Link to='/order/salad'>Order Shop</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link>Dashboard</Link></li>
+        <li><Link>
+            <button className="btn gap-2">
+                <FaShoppingCart/>
+                <div className="badge badge-secondary">+ {cart?.length || 0}</div>
+            </button>
+        </Link></li>
+        <li><Link to='/css'>Css</Link></li>
     </>
     return (
         <div>
@@ -27,10 +42,13 @@ const Navbar = () => {
                         {Navoption}
                     </ul>
                 </div>
-                <div className="navbar-end">
+              {!user &&  <div className="navbar-end">
                     <Link to='/login' className="btn btn-outline btn-warning">Login</Link>
-                   
-                </div>
+                    </div> }
+
+                {user && <div onClick={Out} className="navbar-end ">
+                    <Link className="btn btn-outline btn-warning">Out</Link>
+                    </div>}
             </div>
         </div>
     );

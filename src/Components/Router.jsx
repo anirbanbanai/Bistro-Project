@@ -9,6 +9,9 @@ import ContactUs from "./Contact/ContactUs";
 import Login from "./Login";
 import Register from "./Register";
 import Css from "./Css";
+import DashBoard from "./DashBoard";
+import MyCart from "./Dashboard/MyCart";
+import { PrivetRoute } from "./PrivetRoute";
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +42,17 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
-      },
+      }
+    ]
+  },
+  {
+    path:"/dash",
+    element:<PrivetRoute><DashBoard ></DashBoard></PrivetRoute>,
+    children:[
+      {
+        path:"/dash/mycart",
+        element:<MyCart></MyCart>
+      }
     ]
   },
   

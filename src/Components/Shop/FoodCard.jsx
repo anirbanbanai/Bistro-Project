@@ -6,15 +6,16 @@ import { useCart } from "../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
     const {user} = useContext(AuthContext)
+    console.log(user);
     const [, refetch] = useCart();
     const navigate = useNavigate()
     const { name, image, price, recipe } = item;
 
-    const handleAddToCard = item => {
-        console.log(item)
+    const handleAddToCard = (i) => {
+console.log(i);
         if(user && user.email){
             const orderItem = { name , image, price , email : user?.email}
-            fetch(`http://localhost:5000/carts`, {
+            fetch(`https://bistro-boss-server-wine.vercel.app/carts`, {
                 method:"POST",
                 headers:{
                     'content-type':"application/json"
@@ -27,15 +28,14 @@ const FoodCard = ({ item }) => {
                 if(data.insertedId){
                     refetch()
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'top',
                         icon: 'success',
                         title: 'Food added on the Cart',
                         showConfirmButton: false,
                         timer: 1500
                       })
                 }
-
-                else {
+                 else{
                     Swal.fire({
                         title: 'Please login to order the food.',
                         text: "You won't be able to revert this!",
@@ -64,7 +64,7 @@ const FoodCard = ({ item }) => {
                     <p>{recipe}</p>
                     <p className="text-yellow-600">${price}</p>
 
-                    <div onClick={() => handleAddToCard(item)} className="card-actions">
+                    <div onClick={() => handleAddToCard(item._id)} className="card-actions">
                         <button className="btn btn-primary">Add to Card</button>
                     </div>
                 </div>

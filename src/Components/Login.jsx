@@ -1,13 +1,18 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from './AuthPrvider';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 
 
 
 const Login = () => {
-  const {logIn, }  =useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const {logIn,googleSignIn }  =useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.fromZ?.pathname || "/"
 
   const captchaRef = useRef(null);
   const [, setDisabled] = useState(true);
@@ -15,8 +20,18 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
+  const handleGoogleSignIn  = ()=>{
+    googleSignIn()
+    .then(result  =>{
+      console.log(result.user);
+      navigate(from, {replace: true})
+    })
+  }
+
   const handleSubmit = event => {
     event.preventDefault();
+    setError();
+    setSuccess();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -27,9 +42,12 @@ const Login = () => {
     logIn(email, password)
     .then(result =>{
       console.log(result.user);
+      setSuccess("Login successfull")
+      navigate(from, {replace: true})
     })
     .catch(error=>{
-      console.log(error.message)
+      console.log(error.message);
+      setError(error.message)
     })
   }
 
@@ -68,6 +86,8 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
               </div>
+              <h2 className='text-red-500'>{error}</h2>
+              <h2 className='text-green-500'>{success}</h2>
               <div className="form-control">
 
                 <input ref={captchaRef} type="text" placeholder="enter captcha" className="input input-bordered" />
@@ -77,6 +97,9 @@ const Login = () => {
                 <button disabled={false} className="btn btn-primary only:">Login</button>
               </div>
               <h2>New to User? <Link to='/register'>Register</Link></h2>
+             
+              <button onClick={handleGoogleSignIn} className=" mx-auto btn btn-circle btn-outline btn-warning"> <FcGoogle className='text-3xl'/></button>
+
             </form>
           </div>
         </div>

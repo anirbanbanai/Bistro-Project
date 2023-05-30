@@ -15,17 +15,17 @@ const Navbar = () => {
         <li ><Link to='/menu'>Our Menu</Link> </li>
         <li><Link to='/order/salad'>Order Shop</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link>
+        <li><Link to='/dash'>
             <button className="btn gap-2">
                 <FaShoppingCart/>
-                <div className="badge badge-secondary">+ {cart?.length || 0}</div>
+                <div className="badge badge-secondary">{cart?.length || 0}</div>
             </button>
         </Link></li>
         <li><Link to='/css'>Css</Link></li>
     </>
     return (
-        <div>
-            <div className="navbar max-w-screen-xl  fixed z-10 bg-opacity-80 bg-black text-white ">
+        <div >
+            <div className=" navbar max-w-screen-xl  fixed z-10 bg-opacity-80 bg-black text-white ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost md:hidden">
@@ -47,8 +47,12 @@ const Navbar = () => {
                     </div> }
 
                 {user && <div onClick={Out} className="navbar-end ">
-                    <Link className="btn btn-outline btn-warning">Out</Link>
+                    <Link className="btn btn-outline btn-warning">LogOut</Link>
                     </div>}
+                  
+                    <Link to='/register' className="btn btn-outline bg-white hover:bg-red-500">register</Link>
+                    
+
             </div>
         </div>
     );

@@ -12,6 +12,7 @@ import Css from "./Css";
 import DashBoard from "./DashBoard";
 import MyCart from "./Dashboard/MyCart";
 import { PrivetRoute } from "./PrivetRoute";
+import AllUsers from "./Dashboard/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -50,8 +51,12 @@ export const router = createBrowserRouter([
     element:<PrivetRoute><DashBoard ></DashBoard></PrivetRoute>,
     children:[
       {
-        path:"/dash/mycart",
+        path:"mycart",
         element:<MyCart></MyCart>
+      },
+      {
+        path:"alluser",
+        element:<AllUsers></AllUsers>
       }
     ]
   },

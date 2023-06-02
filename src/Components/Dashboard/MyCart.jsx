@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const MyCart = () => {
     const [cart, refetch] = useCart();
-    // console.log(cart);
+    console.log(cart);
     const total = cart.reduce((sum, item) => item.price + sum, 0);
     const handleDelete = i => {
         console.log(i);
@@ -19,7 +19,7 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-             fetch(`http://localhost:5000/carts/${i}`,{
+             fetch(`https://bistro-boss-server-wine.vercel.app/carts/${i}`,{
                 method:"DELETE"
              })
              .then(res=>res.json())

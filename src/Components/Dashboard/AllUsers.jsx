@@ -14,7 +14,7 @@ const AllUsers = () => {
 
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://bistro-boss-server-wine.vercel.app/users/${id}`, {
             method: "Delete",
         }).then(res=> res.json())
         .then(data =>{
@@ -33,7 +33,7 @@ const AllUsers = () => {
     }
     const handleMakeAdmin = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/users/admin/${id._id}`, {
+        fetch(`https://bistro-boss-server-wine.vercel.app/users/admin/${id._id}`, {
             method: "PATCH",
             headers:{
                 'content-type':'application/json'

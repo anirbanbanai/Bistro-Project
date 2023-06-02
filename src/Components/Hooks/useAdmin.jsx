@@ -6,6 +6,7 @@ const useAdmin = () => {
     const { user } = useAuth();
     console.log(user?.email);
     const [axiosSecure] = useAxiosSecure();
+    
     const { data: isAdmin,  isAdminLoading } = useQuery({
         queryKey: ["isAdmin", user?.email],
         queryFn: async()=>{

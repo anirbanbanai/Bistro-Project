@@ -37,11 +37,11 @@ const DashBoard = () => {
            
         </> : <>
         <li><Link ><FaHome/>User Home</Link></li>
-            <li><Link><FaRegCalendarAlt/> Reservation</Link></li>
-            <li><Link to='/dash/history'><FaWallet/>Payment Histry</Link></li>
+            <li><Link to='reservartion'><FaRegCalendarAlt/> Reservation</Link></li>
+            <li><Link to='payment'><FaWallet/>Payment Histry</Link></li>
             <li><Link to='/dash/mycart'><FaShoppingCart/> MyCart</Link></li>
-            <li><Link to='/dash/review'><MdPreview/> Add Review</Link></li>
-            <li><Link to='/dash/booking'><BsBookmarksFill/> My Booking</Link></li>
+            <li><Link to='addriview'><MdPreview/> Add Review</Link></li>
+            <li><Link to='mybooking'><BsBookmarksFill/> My Booking</Link></li>
         </>
     }
             

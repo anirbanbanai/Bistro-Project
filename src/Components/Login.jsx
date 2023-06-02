@@ -75,13 +75,13 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input type="email" name='email' placeholder="email" className="input input-bordered" />
+                <input type="email" name='email' placeholder="email" required className="input input-bordered" />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input  type="password" name='password' placeholder="password" className="input input-bordered" />
+                <input  type="password" name='password' placeholder="password" required className="input input-bordered" />
                 <label className="label">
                   <LoadCanvasTemplate />
                 </label>
@@ -98,9 +98,9 @@ const Login = () => {
               </div>
               <h2>New to User? <Link to='/register'>Register</Link></h2>
              
-              <button onClick={handleGoogleSignIn} className=" mx-auto btn btn-circle btn-outline btn-warning"> <FcGoogle className='text-3xl'/></button>
 
             </form>
+              <button onClick={handleGoogleSignIn} className=" mx-auto btn btn-circle btn-outline btn-warning mb-5"> <FcGoogle className='text-3xl'/></button>
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@ const Catagory = () => {
                 className="mySwiper mb-20"
             >
                 <SwiperSlide>
-                    <img src={slide1} alt="" />
+                    <img src={slide3} alt="" />
                     <h3 className="text-4xl  uppercase text-center -mt-12">Salad</h3>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -38,11 +38,11 @@ const Catagory = () => {
                     <h3 className="text-4xl  uppercase text-center -mt-12">Pizza</h3>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slide3} alt="" />
+                    <img src={slide4} alt="" />
                     <h3 className="text-4xl  uppercase text-center -mt-12">Shups</h3>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slide4} alt="" />
+                    <img src={slide1} alt="" />
                     <h3 className="text-4xl  uppercase text-center -mt-12">CEk</h3>
                 </SwiperSlide>
                 <SwiperSlide>

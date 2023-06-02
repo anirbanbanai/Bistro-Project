@@ -1,18 +1,31 @@
 import { useQuery } from '@tanstack/react-query'
-import { useContext } from 'react'
-import { AuthContext } from '../AuthPrvider'
 
-const useCart = () =>{
-  const {user} = useContext(AuthContext);
+import useAuth from './useAuth'
+import { useAxiosSecure } from './useAxiosSecure';
+// import { useAxiosSecure } from './useAxiosSecure';
 
-  const { refetch, data: cart = []} = useQuery({
+const useCart = () => {
+  const { user, loading } = useAuth()
+  console.log(user?.email);
+
+  // const token = localStorage.getItem('access-token');
+  const [axiosSecure] = useAxiosSecure();
+
+  const { refetch, data: cart = [] } = useQuery({
     queryKey: ['cart', user?.email],
-    queryFn: async ()=>{
-        const res  = await fetch(`https://bistro-boss-server-wine.vercel.app/carts?email=${user?.email}`)
-        return res.json()
+    enabled: !loading && !!user?.email && !!localStorage.getItem('access-token'),
+    queryFn: async () => {
+      const res = await axiosSecure.post(`/carts?email=${user?.email}`)
+      console.log('res from axios', res);
+      return res.data
     },
+    // queryFn: async ()=>{
+    //     const res  = await axiosSecure(`/carts?email=${user?.email}`)
+    //     console.log(res);
+    //     return res.data;
+    // },
   })
   return [cart, refetch]
 }
 
-export {useCart}
+export { useCart }

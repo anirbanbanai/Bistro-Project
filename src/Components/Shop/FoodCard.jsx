@@ -5,52 +5,52 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     console.log(user);
     const [, refetch] = useCart();
     const navigate = useNavigate()
     const { name, image, price, recipe } = item;
 
     const handleAddToCard = (i) => {
-console.log(i);
-        if(user && user.email){
-            const orderItem = { name , image, price , email : user?.email}
+        console.log(i);
+        if (user && user.email) {
+            const orderItem = { name, image, price, email: user?.email }
             fetch(`https://bistro-boss-server-wine.vercel.app/carts`, {
-                method:"POST",
-                headers:{
-                    'content-type':"application/json"
+                method: "POST",
+                headers: {
+                    'content-type': "application/json"
                 },
                 body: JSON.stringify(orderItem)
             })
-            .then(res=>res.json())
-            .then(data =>{
-                console.log(data)
-                if(data.insertedId){
-                    refetch()
-                    Swal.fire({
-                        position: 'top',
-                        icon: 'success',
-                        title: 'Food added on the Cart',
-                        showConfirmButton: false,
-                        timer: 1500
-                      })
-                }
-                 else{
-                    Swal.fire({
-                        title: 'Please login to order the food.',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Login Now!'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          navigate('/login')
-                        }
-                      })
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.insertedId) {
+                        refetch()
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: 'Food added on the Cart',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                    else {
+                        Swal.fire({
+                            title: 'Please login to order the food.',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Login Now!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate('/login')
+                            }
+                        })
+                    }
+                })
         }
     }
     return (

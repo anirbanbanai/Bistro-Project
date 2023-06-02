@@ -1,36 +1,59 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaRegTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useAxiosSecure } from "../Hooks/useAxiosSecure";
 
 const AllUsers = () => {
+    const [axiosSecure] = useAxiosSecure();
+    
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch(`http://localhost:5000/users`)
-        return res.json()
+        const res = await axiosSecure.get(`/users`)
+        return res.data;
     })
     console.log(users);
 
-    const handleDelete = (user) => {
-        console.log(user);
-    }
-    const handleMakeAdmin = (id) => {
+    const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/users/admin/${id._id}`, {
-            method:"PATCH",
-        })
-        .then(res => res.json())
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: "Delete",
+        }).then(res=> res.json())
         .then(data =>{
             console.log(data);
-            if(data.modifiedCount){
+            if(data.deletedCount > 0){
                 refetch()
                 Swal.fire({
                     position: 'top',
                     icon: 'success',
-                    title: `${id.name} is an admin now`,
+                    title: `User Deleted successfull`,
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                })
             }
         })
+    }
+    const handleMakeAdmin = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/users/admin/${id._id}`, {
+            method: "PATCH",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(id)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: `${id.name} is an admin now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
     return (
         <div className="my-4">

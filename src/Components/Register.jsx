@@ -3,16 +3,24 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthPrvider";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation();
 
   const from = location.state?.fromZ?.pathname || "/"
 
+  const handleGoogleSignIn  = ()=>{
+    googleSignIn()
+    .then(result  =>{
+      console.log(result.user);
+      navigate(from, {replace: true})
+    })
+  }
 
   const HandleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +45,7 @@ const Register = () => {
 
           .then(() => {
             const saveUser = { name: name, email: email, photo: photo }
-            fetch(`https://bistro-boss-server-wine.vercel.app/users`, {
+            fetch(`http://localhost:5000/users`, {
               method: "POST",
               headers: {
                 'content-type': 'application/json'
@@ -111,6 +119,7 @@ const Register = () => {
               </div>
               <h2>Already have an Accunt? <Link to='/login'>Login</Link></h2>
             </form>
+            <button onClick={handleGoogleSignIn} className=" mx-auto btn btn-circle btn-outline btn-warning mb-5"> <FcGoogle className='text-3xl'/></button>
           </div>
         </div>
       </div>

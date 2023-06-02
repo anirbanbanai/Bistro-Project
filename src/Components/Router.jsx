@@ -13,6 +13,9 @@ import DashBoard from "./DashBoard";
 import MyCart from "./Dashboard/MyCart";
 import { PrivetRoute } from "./PrivetRoute";
 import AllUsers from "./Dashboard/AllUsers";
+import AddItem from "./Dashboard/Admin/AddItem";
+import ManageItem from "./Dashboard/Admin/ManageItem";
+import ManageBooking from "./Dashboard/Admin/ManageBooking";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +50,7 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path:"/dash",
+    path:"dash",
     element:<PrivetRoute><DashBoard ></DashBoard></PrivetRoute>,
     children:[
       {
@@ -57,6 +60,18 @@ export const router = createBrowserRouter([
       {
         path:"alluser",
         element:<AllUsers></AllUsers>
+      },
+      {
+        path:'additem',
+        element:<AddItem></AddItem>
+      },
+      {
+        path:'manageitem',
+        element:<ManageItem></ManageItem>
+      },
+      {
+        path:"managebooking",
+        element:<ManageBooking></ManageBooking>
       }
     ]
   },

@@ -21,6 +21,8 @@ import PayementHistory from "./Dashboard/User/PayementHistory";
 import AddReview from "./Dashboard/User/AddReview";
 import Reservation from "./Dashboard/User/Reservation";
 import { AdminRoute } from "./AdminRoute";
+import UserHome from "./Dashboard/User/UserHome";
+import AdminHome from "./Dashboard/Admin/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +95,14 @@ export const router = createBrowserRouter([
       {
         path:'reservartion',
         element:<Reservation></Reservation>
+      },
+      {
+        path:'userhome',
+        element:<UserHome></UserHome>
+      },
+      {
+        path:'adminhome',
+        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
       }
     ]
   },

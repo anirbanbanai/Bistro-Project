@@ -3,10 +3,12 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "./AuthPrvider";
 import { useCart } from "./Hooks/useCart";
+import useAdmin from "./Hooks/useAdmin";
 
 const Navbar = () => {
     const [cart] = useCart();
     console.log(cart);
+    const [isAdmin] = useAdmin();
     const {user ,LogOut} = useContext(AuthContext);
     const Out = ()=>{
         LogOut()
@@ -16,7 +18,7 @@ const Navbar = () => {
         <li ><Link to='/menu'>Our Menu</Link> </li>
         <li><Link to='/order/salad'>Order Shop</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link to='/dash'>
+        <li><Link to={isAdmin ? '/dash/adminhome' : '/dash/userhome'}>
             <button className="btn gap-2">
                 <FaShoppingCart/>
                 <div className="badge badge-secondary">{cart?.length || 0}</div>

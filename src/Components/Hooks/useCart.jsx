@@ -15,8 +15,8 @@ const useCart = () => {
     queryKey: ['cart', user?.email],
     enabled: !loading && !!user?.email && !!localStorage.getItem('access-token'),
     queryFn: async () => {
-      const res = await axiosSecure.post(`/carts?email=${user?.email}`)
-      console.log('res from axios', res);
+      const res = await axiosSecure.get(`/carts?email=${user?.email}`)
+      // console.log('res from axios', res);
       return res.data
     },
     // queryFn: async ()=>{

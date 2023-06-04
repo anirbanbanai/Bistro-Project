@@ -45,7 +45,7 @@ const AuthPrvider = ({ children }) => {
       if (currentuser) {
         axios.post(`https://bistro-boss-server-wine.vercel.app/jwt`, { email: currentuser.email })
           .then(data => {
-            console.log(data.data);
+            // console.log(data.data);
             localStorage.setItem('access-token', data.data);
             setLoading(false);
 
@@ -70,7 +70,7 @@ const AuthPrvider = ({ children }) => {
     updateUserProfile,
     googleSignIn,
   }
-  console.log(user?.displayName);
+  // console.log(user?.displayName);
   return (
     <AuthContext.Provider value={authInfo}>
       {children}

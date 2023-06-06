@@ -7,7 +7,7 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 const ManageItem = () => {
     const [menu, , refetch] = useMenu();
     const [axiosSecure] = useAxiosSecure();
-    console.log(menu);
+    // console.log(menu);
 
     const handleDelete = id => {
         console.log(id);
@@ -37,11 +37,11 @@ const ManageItem = () => {
         })
     }
     return (
-        <div className="w-full">
+        <div className="w-full mx-auto">
             <SectionTitle heading="Manage all item" subHeading="Hurry up"></SectionTitle>
             <div>
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table mx-auto">
                         {/* head */}
                         <thead>
                             <tr>
@@ -59,7 +59,7 @@ const ManageItem = () => {
                                 menu.map((item, index) => <tr key={item._id}>
                                     <td>{index + 1}</td>
                                     <td>
-                                        <img className="w-2/4 rounded-2xl" src={item.image} alt="" />
+                                        <img className="w-[100px] rounded-2xl" src={item.image} alt="" />
                                     </td>
                                     <td>
                                         <h2>{item.name}</h2>

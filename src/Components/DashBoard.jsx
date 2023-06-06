@@ -14,7 +14,7 @@ const DashBoard = () => {
     // const isAdmin = true;
 
     const [isAdmin] = useAdmin();
-console.log(isAdmin);
+// console.log(isAdmin);
     return (
         <div>
             <div className="drawer drawer-mobile">

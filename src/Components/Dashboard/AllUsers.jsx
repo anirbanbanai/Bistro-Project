@@ -10,7 +10,7 @@ const AllUsers = () => {
         const res = await axiosSecure.get(`/users`)
         return res.data;
     })
-    console.log(users);
+    // console.log(users);
 
     const handleDelete = (id) => {
         console.log(id);

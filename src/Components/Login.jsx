@@ -12,7 +12,7 @@ const Login = () => {
   const {logIn,googleSignIn }  =useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.fromZ?.pathname || "/"
+  const from = location.state?.from?.pathname || "/"
 
   const captchaRef = useRef(null);
   const [, setDisabled] = useState(true);
@@ -27,6 +27,10 @@ const Login = () => {
       navigate(from, {replace: true})
     })
   }
+
+  // useEffect(()=>{
+  //   if(user?.email && localStorage.getItem)
+  // },[])
 
   const handleSubmit = event => {
     event.preventDefault();

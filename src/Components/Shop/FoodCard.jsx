@@ -5,16 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
+    console.log(item);
     const { user } = useContext(AuthContext)
     console.log(user);
     const [, refetch] = useCart();
     const navigate = useNavigate()
-    const { name, image, price, recipe } = item;
+    const { name, image, price, recipe,_id } = item;
 
     const handleAddToCard = (i) => {
         console.log(i);
         if (user && user.email) {
-            const orderItem = { name, image, price, email: user?.email }
+            const orderItem = {menuItemId: _id, name, image, price, email: user?.email }
             fetch(`https://bistro-boss-server-wine.vercel.app/carts`, {
                 method: "POST",
                 headers: {

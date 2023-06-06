@@ -37,7 +37,7 @@ const AddItem = () => {
                         Swal.fire({
                             position: 'top',
                             icon: 'success',
-                            title: 'Image has been saved',
+                            title: 'New data has been added',
                             showConfirmButton: false,
                             timer: 1500
                           })

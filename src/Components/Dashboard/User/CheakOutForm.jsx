@@ -6,10 +6,11 @@ import useAuth from "../../Hooks/useAuth";
 // import './Css/Common.css'
 
 const CheakOutForm = ({ price, cards }) => {
-    // console.log(card, price);
+    console.log(cards, price);
+    
     const { user } = useAuth()
     const [error, CardError] = useState(' ');
-    const [clientSecret, setClientSecret] = useState('')
+    const [clientSecret, setClientSecret] = useState("")
     const [proccesing, setProccessing] = useState(false);
     const [transactionId, setTranjectionId] = useState(' ')
     const stripe = useStripe();
@@ -74,7 +75,7 @@ const CheakOutForm = ({ price, cards }) => {
             const payment = {
                 email: user?.email,
                 transactionId: paymentIntent.id,
-                price,
+                price: price,
                 date:new Date(),
                 quantity: card.length,
                 cardItems: cards.map(m => m._id),
